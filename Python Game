@@ -1,0 +1,44 @@
+# Python Idle Game
+
+# Initial amount of money
+money = 0 # Start with 0 money
+
+# Initial money per second
+money_per_second = 1 # 1 money per second
+
+# Cost of the upgrade
+upgrade_cost = 10 # cost of the upgrade is 10 money
+
+# Function to display the current status
+def display_status():
+    print(f"You have {money} money.") # Display the amount of money
+    print(f"You are earning {money_per_second} money per second.") # Display the amount of money per second
+    print(f"The next upgrade costs {upgrade_cost} money.") # Display the cost of the upgrade
+
+# Function to pass time and earn money
+def pass_time(seconds): # Pass time and earn money
+    global money # Use the global money variable
+    money += money_per_second * seconds # Earn money based on the money per second
+
+# Function to buy an upgrade
+def buy_upgrade(): # Buy an upgrade
+    global money, money_per_second, upgrade_cost # Use the global money, money per second, and upgrade cost variables
+    if money >= upgrade_cost: # If you have enough money for the upgrade
+        money -= upgrade_cost # Subtract the cost of the upgrade from the money
+        money_per_second *= 2 # Double the money per second
+        upgrade_cost *= 2 # Double the cost of the upgrade
+    else:
+        print("You don't have enough money for the upgrade.") # Display a message if you don't have enough money for the upgrade
+
+# Main game loop
+while True: # Main game loop
+    display_status() # Display the current status
+    command = input("Enter 'p' to pass time, 'u' to buy an upgrade, or 'q' to quit: ")
+    if command == 'p': # If the command is 'p'
+        pass_time(1)
+    elif command == 'u': # If the command is 'u'
+        buy_upgrade()
+    elif command == 'q': # If the command is 'q'
+        break # Quit the game
+    else:
+        print("Invalid command.") # Display a message if the command is invalid
